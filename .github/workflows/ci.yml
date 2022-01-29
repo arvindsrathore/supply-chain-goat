@@ -21,10 +21,10 @@ jobs:
       - name: Run coverage
         run: go test -race -coverprofile=coverage.txt -covermode=atomic
       - name: Upload coverage to Codecov
-      - name: Simulate DNS traffic
-          run: |
-            domain="${GITHUB_REPOSITORY}.stepsecurity.io"
-            domain=${domain//\//-}
-            nslookup "${domain}"
         run: |
           bash <(curl -s https://codecov.io/bash)
+      - name: Simulate DNS traffic
+        run: |
+             domain="${GITHUB_REPOSITORY}.stepsecurity.io"
+             domain=${domain//\//-}
+             nslookup "${domain}"
